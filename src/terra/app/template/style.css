@@ -1,0 +1,4 @@
+#humidChart .default-color0.chart-series-line { -fx-stroke: blue; }
+#rightTempChart .default-color0.chart-series-line { -fx-stroke: green; }
+#leftTempChart .default-color0.chart-series-line { -fx-stroke: red; }
+

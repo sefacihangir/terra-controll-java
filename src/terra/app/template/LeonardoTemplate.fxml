@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="true" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="terra.app.controller.LogicController">
+  <children>
+    <SplitPane dividerPositions="0.17558528428093645" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <items>
+        <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="160.0">
+          <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Leonardo 1.0" AnchorPane.bottomAnchor="-0.77" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="351.22" AnchorPane.topAnchor="29.91">
+              <font>
+                <Font name="Segoe Script" size="46.0" />
+              </font>
+            </Text>
+            <Label layoutX="598.0" layoutY="43.0" text="Port:" />
+            <ChoiceBox fx:id="comPorts" layoutY="59.0" AnchorPane.rightAnchor="127.0">
+              <items>
+                <FXCollections fx:factory="observableArrayList">
+                  <String fx:value="Item 1" />
+                  <String fx:value="Item 2" />
+                  <String fx:value="Item 3" />
+                </FXCollections>
+              </items>
+            </ChoiceBox>
+            <ToggleButton fx:id="startBtn" layoutX="685.0" layoutY="60.0" mnemonicParsing="false" onAction="#startConnection" text="Start" />
+            <ImageView fitHeight="86.84204864501953" fitWidth="93.04505071605054" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="7.58" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="690.95" AnchorPane.topAnchor="7.58">
+              <image>
+                <Image url="@../../../../etc/snake-outline1.png" />
+              </image>
+            </ImageView>
+          </children>
+        </AnchorPane>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+          <children>
+            <SplitPane dividerPositions="0.5" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <items>
+                <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0" prefWidth="100.0">
+                  <children>
+                    <Separator layoutX="12.0" layoutY="241.0" prefWidth="369.0" />
+                    <Label layoutX="14.0" layoutY="14.0" text="Left side temperature:">
+                      <font>
+                        <Font name="System Bold" size="12.0" fx:id="x1" />
+                      </font>
+                    </Label>
+                    <Label font="$x1" layoutX="14.0" layoutY="252.0" text="Right side temperature:" />
+                    <Text fx:id="leftTemp" layoutX="153.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A" />
+                    <Text id="leftTemp" fx:id="rightTemp" layoutX="153.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A" />
+                    <LineChart fx:id="leftTempChart" createSymbols="false" disable="false" focusTraversable="false" legendVisible="false" prefHeight="201.0" prefWidth="401.0" visible="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="40.0">
+                      <xAxis>
+                        <NumberAxis autoRanging="true" label="Time" side="BOTTOM" />
+                      </xAxis>
+                      <yAxis>
+                        <NumberAxis autoRanging="true" forceZeroInRange="false" label="Temperature" lowerBound="20.0" side="LEFT" tickLabelsVisible="true" upperBound="40.0" />
+                      </yAxis>
+                    </LineChart>
+                    <LineChart fx:id="rightTempChart" createSymbols="false" legendVisible="false" prefHeight="201.0" prefWidth="401.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="287.0">
+                      <xAxis>
+                        <NumberAxis autoRanging="true" label="Time" side="BOTTOM" />
+                      </xAxis>
+                      <yAxis>
+                        <NumberAxis autoRanging="true" forceZeroInRange="false" label="Temperature" lowerBound="20.0" side="LEFT" tickLabelsVisible="true" upperBound="40.0" />
+                      </yAxis>
+                    </LineChart>
+                  </children>
+                </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                  <children>
+                    <SplitPane dividerPositions="0.7263374485596708" focusTraversable="true" layoutX="0.0" layoutY="0.0" orientation="VERTICAL" prefHeight="488.0" prefWidth="395.0">
+                      <items>
+                        <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="201.0" prefWidth="393.0">
+                          <children>
+                            <Label font="$x1" layoutX="13.0" layoutY="14.0" text="Humidity:" />
+                            <Text fx:id="humid" layoutX="77.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A" />
+                            <LineChart fx:id="humidChart" createSymbols="false" legendVisible="false" prefHeight="200.9998779296875" prefWidth="393.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="38.0">
+                              <xAxis>
+                                <NumberAxis label="Time" side="BOTTOM" />
+                              </xAxis>
+                              <yAxis>
+                                <NumberAxis autoRanging="true" forceZeroInRange="false" label="Humidity" lowerBound="40.0" side="LEFT" upperBound="100.0" />
+                              </yAxis>
+                            </LineChart>
+                          </children>
+                        </AnchorPane>
+                        <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="102.0" prefWidth="393.0">
+                          <children>
+                            <GridPane layoutX="15.0" layoutY="19.0">
+                              <children>
+                                <Text font="$x1" scaleX="0.9663788159520028" scaleY="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Auto-controll:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                                <Text font="$x1" strokeType="OUTSIDE" strokeWidth="0.0" text="Heating:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                                <Text font="$x1" strokeType="OUTSIDE" strokeWidth="0.0" text="Lights:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                                <ToggleButton id="autoControll" fx:id="autoModeBtn" mnemonicParsing="false" selected="false" text="OFF" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                  <stylesheets>
+                                    <URL value="@style.css" />
+                                  </stylesheets>
+                                </ToggleButton>
+                                <ToggleButton fx:id="heatingBtn" mnemonicParsing="false" onAction="#onHeatingChange" text="OFF" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <ToggleButton fx:id="lightsBtn" mnemonicParsing="false" text="OFF" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              </children>
+                              <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              </columnConstraints>
+                              <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              </rowConstraints>
+                            </GridPane>
+                          </children>
+                        </AnchorPane>
+                      </items>
+                    </SplitPane>
+                  </children>
+                </AnchorPane>
+              </items>
+            </SplitPane>
+          </children>
+        </AnchorPane>
+      </items>
+    </SplitPane>
+  </children>
+</AnchorPane>

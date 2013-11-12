@@ -13,8 +13,6 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Data;
 import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.ChoiceBox;
@@ -57,6 +55,15 @@ public class LogicController implements Initializable {
 
 	@FXML
 	private ToggleButton startBtn;
+	
+	@FXML
+	private ToggleButton autoModeBtn;
+	
+	@FXML
+	private ToggleButton heatingBtn;
+	
+	@FXML
+	private ToggleButton lightsBtn;
 	
 	private int timeCount = -1;
 	
@@ -128,12 +135,28 @@ public class LogicController implements Initializable {
 				leftTemp.setText(toTemp(msg.getLeftTemp()));
 				rightTemp.setText(toTemp(msg.getRightTemp()));
 				humid.setText(toPercent(msg.getHumid()));
+				
 				humidSeries.getData().add(new Data<Number,Number>(timeCount,msg.getHumid()));
 				leftTempSeries.getData().add(new Data<Number,Number>(timeCount,msg.getLeftTemp()));
 				rightTempSeries.getData().add(new Data<Number,Number>(timeCount,msg.getRightTemp()));
+				
+				toggleButton(autoModeBtn, msg.isAutoModeOn());
+				toggleButton(heatingBtn, msg.isHeatingOn());
+				toggleButton(lightsBtn, msg.isLightsOn());
+				
 			}
+
 		});
 		
+	}
+	
+	private void toggleButton(ToggleButton btn, boolean value){
+		btn.setSelected(value);
+		btn.setText(getToggleButtonText(value));
+	}
+	
+	private String getToggleButtonText(boolean value) {
+		return value == true ? "ON" : "OFF";
 	}
 	
     private String toPercent(double value) {
@@ -143,6 +166,15 @@ public class LogicController implements Initializable {
 	private String toTemp(double temp) {
 		return String.format("%s%sC", temp,DEGREE);
 	}
+	
+	public void onHeatingChange(){
+		try {
+			serialPort.writeString("as");
+		} catch (SerialPortException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	private class SerialPortReader implements SerialPortEventListener {
 
@@ -151,6 +183,7 @@ public class LogicController implements Initializable {
                 if(event.getEventValue() == 23){
                 	try {
                 		String incomeString = serialPort.readString();
+                		System.out.println(incomeString);
                 		SerialMessage msg = extractMessage(incomeString);
                 		changeValues(msg);
 					} catch (SerialPortException e) {
