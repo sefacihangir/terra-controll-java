@@ -112,7 +112,7 @@ public class LogicController implements Initializable {
 				 serialPort = new SerialPort(port); 
 			        try {
 			            serialPort.openPort();//Open port
-			            serialPort.setParams(115200, 8, 1, 0);//Set params
+			            serialPort.setParams(9600, 8, 1, 0);//Set params
 			            serialPort.setEventsMask(SerialPort.MASK_RXCHAR);//Set mask
 			            serialPort.addEventListener(new SerialPortReader());//Add SerialPortEventListener
 			        }
@@ -168,12 +168,31 @@ public class LogicController implements Initializable {
 	}
 	
 	public void onHeatingChange(){
+		sendSerialCommand(heatingBtn, "h");
+	}
+	
+	public void onLightsChange(){
+		sendSerialCommand(lightsBtn, "l");
+	}
+	
+	public void onAutoModeChange(){
+		sendSerialCommand(autoModeBtn, "a");
+	}
+
+	private void sendSerialCommand(ToggleButton btn, String prefix) {
+		String command = null;
+		if(btn.isSelected()){
+			command = prefix + "1";
+		} else {
+			command = prefix + "0";
+		}
 		try {
-			serialPort.writeString("as");
+			serialPort.writeString(command);
+			System.out.println("sending command" + command);
 		} catch (SerialPortException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 
 	private class SerialPortReader implements SerialPortEventListener {

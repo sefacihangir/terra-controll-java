@@ -98,13 +98,13 @@
                                 <Text font="$x1" scaleX="0.9663788159520028" scaleY="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Auto-controll:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
                                 <Text font="$x1" strokeType="OUTSIDE" strokeWidth="0.0" text="Heating:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
                                 <Text font="$x1" strokeType="OUTSIDE" strokeWidth="0.0" text="Lights:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-                                <ToggleButton id="autoControll" fx:id="autoModeBtn" mnemonicParsing="false" selected="false" text="OFF" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                <ToggleButton id="autoControll" fx:id="autoModeBtn" mnemonicParsing="false" onAction="#onAutoModeChange" selected="false" text="OFF" GridPane.columnIndex="1" GridPane.rowIndex="0">
                                   <stylesheets>
                                     <URL value="@style.css" />
                                   </stylesheets>
                                 </ToggleButton>
                                 <ToggleButton fx:id="heatingBtn" mnemonicParsing="false" onAction="#onHeatingChange" text="OFF" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                <ToggleButton fx:id="lightsBtn" mnemonicParsing="false" text="OFF" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <ToggleButton fx:id="lightsBtn" mnemonicParsing="false" onAction="#onLightsChange" text="OFF" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                               </children>
                               <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
